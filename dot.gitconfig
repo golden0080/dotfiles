@@ -1,0 +1,32 @@
+[core]
+	editor = vim
+	excludesfile = /Users/gh/.gitignore_global
+[user]
+	name = Guanghui Chen
+	email = gh@turingvideo.com
+[alias]
+	lg   = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+	todo = grep -n -e TODO -e FIXME -e XXX -e OPTIMIZE -e FIX-ME
+	logf = log --follow
+	size = count-objects -vH
+	loc  = !git diff --stat `git hash-object -t tree /dev/null` | tail -1 | cut -d' ' -f5
+	pygrep = !git grep $1 -- `git ls-files | grep -v migrations | grep py`
+	cherrypick = cherry-pick
+	blames = blame -cwMC
+	branches = branch -vv
+	find = !git ls-files | grep
+	co = checkout
+	br = branch
+	ci = commit
+	st = status
+	df = diff
+	do = diff origin/master
+	cc = commit
+	ca = commit --amend
+	aa = add .
+[branch]
+	autosetuprebase = always
+[rerere]
+	enabled = true
+[credential]
+	helper = store
