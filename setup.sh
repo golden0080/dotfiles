@@ -19,3 +19,5 @@ sudo pip3 install stormssh
 # TODO(gh): install fzf, optionally
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
+
+# TODO(gh): insert necessary lines into ~/.bash_profile
