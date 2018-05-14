@@ -1,2 +1,2 @@
 gsettings set org.gnome.desktop.background show-desktop-icons false
-xmodmap ~/dotfiles/dot.Xmodmap
+xmodmap $HOME/dotfiles/dot.Xmodmap

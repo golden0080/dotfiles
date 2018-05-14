@@ -1,3 +1,6 @@
+# Mark as loaded
+export BASH_PROFILE_RUN=1
+
 export EDITOR=vim
 YELLOW='\[\033[36m\]'
 
@@ -21,8 +24,9 @@ alias wo=workon
 alias ove=deactivate
 
 # -------virtualenvwrapper-------
-export WORKON_HOME=$HOME/.virtualenvs
-source /usr/local/bin/virtualenvwrapper.sh
+export WORKON_HOME=$HOME/envs
+export PROJECT_HOME=$HOME/projects
+source /home/gh/.local/bin/virtualenvwrapper.sh
 
 # -------utils-------
 alias cdu="cd .."
@@ -40,10 +44,7 @@ alias install_robot="bash ~/projects/gh-tools/robot/install.sh"
 # shell and we should not mess with it.
 if [ -n "$PS1" ]; then
     # A temporary variable to contain our prompt command
-    NEW_PROMPT_COMMAND='
-        TRIMMED_PWD=${PWD: -30};
-        TRIMMED_PWD=${TRIMMED_PWD:-$PWD}
-    '
+    NEW_PROMPT_COMMAND='TRIMMED_PWD=${PWD: -30}; TRIMMED_PWD=${TRIMMED_PWD:-$PWD}'
 
     # If there's an existing prompt command, let's not
     # clobber it
@@ -59,9 +60,6 @@ if [ -n "$PS1" ]; then
     # Set PS1 with our new variable
     # \h - hostname, \u - username
     PS1='\[\033[36m\]\u:\[\033[33m\]$TRIMMED_PWD \$ \[\033[0m\]'
-fi
-if [ $ITERM_SESSION_ID ]; then
-	export PROMPT_COMMAND='echo -ne "\033];${PWD##*/}\007"; ':"$PROMPT_COMMAND";
 fi
 
 # -------OpenCV 3--------

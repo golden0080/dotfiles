@@ -21,7 +21,7 @@ export FZF_DEFAULT_COMMAND='fd -d 8'
 
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
-cdf() {
+function cdf() {
     local file
     local dir
     file=$(fzf +m -q "$1") && dir=$(dirname "$file") && cd "$dir"
