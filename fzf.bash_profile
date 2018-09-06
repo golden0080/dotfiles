@@ -1,16 +1,16 @@
 # Setup fzf
 # ---------
 if [[ ! "$PATH" == */home/gh/.fzf/bin* ]]; then
-  export PATH="$PATH:/home/gh/.fzf/bin"
+  export PATH="$PATH:/Users/gh/.fzf/bin"
 fi
 
 # Auto-completion
 # ---------------
-[[ $- == *i* ]] && source "/home/gh/.fzf/shell/completion.bash" 2> /dev/null
+[[ $- == *i* ]] && source "/Users/gh/.fzf/shell/completion.bash" 2> /dev/null
 
 # Key bindings
 # ------------
-source "/home/gh/.fzf/shell/key-bindings.bash"
+source "/Users/gh/.fzf/shell/key-bindings.bash"
 
 # My customizations
 export FZF_DEFAULT_OPTS="--extended --border"
