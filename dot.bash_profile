@@ -39,6 +39,10 @@ function tsize() {
 }
 alias install_robot="bash ~/projects/gh-tools/robot/install.sh"
 
+function clean() {
+    clipdel -d .*
+}
+
 # -------PS1--------
 # If PS1 is not set at all, this is not an interactive
 # shell and we should not mess with it.
@@ -73,4 +77,4 @@ export NVM_DIR="$HOME/.nvm"
 # -------- Node JS -------
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
-export PATH="/usr/local/opt/qt/bin:$PATH"
+export PATH="/usr/local/opt/qt/bin:$HOME/local/bin:$PATH"
