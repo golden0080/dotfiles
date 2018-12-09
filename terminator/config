@@ -1,0 +1,24 @@
+[global_config]
+  borderless = True
+  enabled_plugins = ActivityWatch, LaunchpadCodeURLHandler, APTURLHandler, LaunchpadBugURLHandler
+[keybindings]
+[layouts]
+  [[default]]
+    [[[child1]]]
+      parent = window0
+      type = Terminal
+    [[[window0]]]
+      parent = ""
+      type = Window
+[plugins]
+[profiles]
+  [[default]]
+    audible_bell = True
+    background_image = None
+    copy_on_selection = True
+    font = Share Tech Mono 11
+    scroll_on_output = False
+    scrollback_lines = 2000
+    urgent_bell = True
+    use_system_font = False
+    visible_bell = True
