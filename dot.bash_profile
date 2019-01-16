@@ -26,7 +26,7 @@ alias ove=deactivate
 # -------virtualenvwrapper-------
 export WORKON_HOME=$HOME/envs
 export PROJECT_HOME=$HOME/projects
-source /home/gh/.local/bin/virtualenvwrapper.sh
+# source /home/gh/.local/bin/virtualenvwrapper.sh
 
 # -------utils-------
 alias cdu="cd .."
@@ -66,10 +66,6 @@ if [ -n "$PS1" ]; then
     PS1='\[\033[36m\]\u:\[\033[33m\]$TRIMMED_PWD \$ \[\033[0m\]'
 fi
 
-# -------OpenCV 3--------
-export PATH="/usr/local/opt/opencv3/bin:$PATH"
-export PATH="/usr/local/opt/opencv3/bin:$PATH"
-
 # -------- Node JS -------
 if [ -d "$HOME/.nvm" ]; then
   export NVM_DIR="$HOME/.nvm"
@@ -77,4 +73,4 @@ if [ -d "$HOME/.nvm" ]; then
   [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 fi
 
-export PATH="/usr/local/opt/qt/bin:$PATH"
+xrandr --output DVI-1 --auto --output DVI-1-2 --auto --right-of DVI-1
