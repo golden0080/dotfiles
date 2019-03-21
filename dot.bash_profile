@@ -73,4 +73,7 @@ if [ -d "$HOME/.nvm" ]; then
   [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 fi
 
+# -------- Misc ----------
+alias audio=pulseaudio-ctl
+
 xrandr --output DVI-1 --auto --output DVI-1-2 --auto --right-of DVI-1
