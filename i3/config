@@ -35,6 +35,9 @@ bindsym $mod+Return exec terminator
 # kill focused window
 bindsym $mod+Shift+q kill
 
+# lock screen
+bindsym $mod+Shift+s exec --no-startup-id "xscreensaver-command -lock"
+
 # start dmenu (a program launcher)
 # bindsym $mod+d exec dmenu_run
 # TODO(gh): switch to Rofi and parcellite
@@ -180,3 +183,4 @@ exec_always --no-startup-id "pactl set-sink-volume alsa_output.usb-Logitech_Logi
 exec_always --no-startup-id "pgrep fcitx || fcitx &"
 exec_always --no-startup-id "pgrep clipmenud || clipmenud &"
 exec_always --no-startup-id "xmodmap /home/gh/dotfiles/dot.Xmodmap"
+exec_always --no-startup-id "xscreensaver -nosplash &"
