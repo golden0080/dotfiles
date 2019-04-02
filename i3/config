@@ -38,6 +38,21 @@ bindsym $mod+Shift+q kill
 # lock screen
 bindsym $mod+Shift+s exec --no-startup-id "xscreensaver-command -lock"
 
+set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (p) shutdown
+mode "$mode_system" {
+    bindsym l exec --no-startup-id "xscreensaver-command -lock", mode "default"
+    bindsym e exec --no-startup-id i3-msg exit, mode "default"
+    bindsym s exec --no-startup-id systemctl suspend, mode "default"
+    bindsym h exec --no-startup-id systemctl hibernate, mode "default"
+    bindsym r exec --no-startup-id systemctl reboot, mode "default"
+    bindsym p exec --no-startup-id systemctl poweroff, mode "default"
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+Shift+m mode "$mode_system"
+
 # start dmenu (a program launcher)
 # bindsym $mod+d exec dmenu_run
 # TODO(gh): switch to Rofi and parcellite
@@ -82,9 +97,7 @@ bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
-
-# focus the parent container
-bindsym $mod+a focus parent
+# bindsym $mod+a focus parent
 
 # focus the child container
 #bindsym $mod+d focus child
@@ -167,16 +180,19 @@ bar {
 }
 
 # Workspace and monitors
-workspace 1 output "DVI-1"
-workspace 2 output "DVI-1"
-workspace 3 output "DVI-1"
-workspace 4 output "DVI-1-2"
-workspace 5 output "DVI-1-2"
-workspace 6 output "DVI-1"
-workspace 7 output "DVI-1"
-workspace 8 output "DVI-1-2"
-workspace 9 output "DVI-1-2"
-workspace 10 output "DVI-1-2"
+set $MAIN_DISPLAY "DVI-1"
+set $SIDE_DISPLAY "DVI-1-2"
+
+workspace 1 output $MAIN_DISPLAY
+workspace 2 output $MAIN_DISPLAY
+workspace 3 output $MAIN_DISPLAY
+workspace 4 output $SIDE_DISPLAY
+workspace 5 output $SIDE_DISPLAY
+workspace 6 output $MAIN_DISPLAY
+workspace 7 output $MAIN_DISPLAY
+workspace 8 output $SIDE_DISPLAY
+workspace 9 output $SIDE_DISPLAY
+workspace 10 output $SIDE_DISPLAY
                          
 exec_always --no-startup-id "pacmd set-default-sink alsa_output.usb-Logitech_Logitech_G930_Headset-00.analog-stereo"
 exec_always --no-startup-id "pactl set-sink-volume alsa_output.usb-Logitech_Logitech_G930_Headset-00.analog-stereo 33%"
