@@ -56,21 +56,44 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-fi
-unset color_prompt force_color_prompt
+# if [ "$color_prompt" = yes ]; then
+#     PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+# else
+#     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+# fi
+# unset color_prompt force_color_prompt
 
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
-esac
+# # If this is an xterm set the title to user@host:dir
+# case "$TERM" in
+# xterm*|rxvt*)
+#     PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+#     ;;
+# *)
+#     ;;
+# esac
+
+# -------PS1--------
+# If PS1 is not set at all, this is not an interactive
+# shell and we should not mess with it.
+if [ -n "$PS1" ]; then
+    # A temporary variable to contain our prompt command
+    NEW_PROMPT_COMMAND='TRIMMED_PWD=${PWD: -30}; TRIMMED_PWD=${TRIMMED_PWD:-$PWD}'
+
+    # If there's an existing prompt command, let's not
+    # clobber it
+    if [ -n "$PROMPT_COMMAND" ]; then
+        PROMPT_COMMAND="$PROMPT_COMMAND;$NEW_PROMPT_COMMAND"
+    else
+        PROMPT_COMMAND="$NEW_PROMPT_COMMAND"
+    fi
+
+    # We're done with our temporary variable
+    unset NEW_PROMPT_COMMAND
+
+    # Set PS1 with our new variable
+    # \h - hostname, \u - username
+    PS1='\[\033[36m\]\u:\[\033[33m\]$TRIMMED_PWD \$ \[\033[0m\]'
+fi
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -116,8 +139,4 @@ if ! shopt -oq posix; then
   fi
 fi
 
-source $HOME/.bash_profile
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[ -z "$BASH_PROFILE_RUN" ] && source $HOME/.bash_profile
