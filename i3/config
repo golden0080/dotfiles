@@ -13,8 +13,8 @@ set $mod Mod1
 
 # Devices for current system
 # --------------------------
-set $MAIN_DISPLAY "DVI-1"
-set $SIDE_DISPLAY "DVI-1-2"
+set $MAIN_DISPLAY DVI-1
+set $SIDE_DISPLAY DVI-1-2
 
 # Check audio sink name with `pacmd` -> `list-sinks`
 # do not add quotes to the name
@@ -23,8 +23,11 @@ set $MAIN_AUDIO alsa_output.usb-Logitech_Logitech_G930_Headset-00.analog-stereo
 
 # Startup Processes
 # -----------------
+exec_always --no-startup-id "gsettings set org.gnome.desktop.background show-desktop-icons false"
+exec_always --no-startup-id "xrandr --output $MAIN_DISPLAY --auto --output $SIDE_DISPLAY --auto --right-of $MAIN_DISPLAY"
 exec_always --no-startup-id "pacmd set-default-sink $MAIN_AUDIO"
 exec_always --no-startup-id "pactl set-sink-volume $MAIN_AUDIO 33%"
+
 exec_always --no-startup-id "pgrep fcitx || fcitx &"
 exec_always --no-startup-id "pgrep clipmenud || clipmenud &"
 exec_always --no-startup-id "pgrep xscreensaver || xscreensaver -nosplash &"

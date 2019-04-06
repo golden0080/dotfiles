@@ -1,6 +1,3 @@
-# Mark as loaded
-export BASH_PROFILE_RUN=1
-
 export EDITOR=vim
 YELLOW='\[\033[36m\]'
 
@@ -47,4 +44,3 @@ fi
 # -------- Misc ----------
 alias audio=pulseaudio-ctl
 
-xrandr --output DVI-1 --auto --output DVI-1-2 --auto --right-of DVI-1

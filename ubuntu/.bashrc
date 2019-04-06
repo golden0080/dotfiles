@@ -139,4 +139,8 @@ if ! shopt -oq posix; then
   fi
 fi
 
-[ -z "$BASH_PROFILE_RUN" ] && source $HOME/.bash_profile
+# ------- Other extensions --------
+for DOTFILE in `find ~/dotfiles/bash_extensions`
+do
+    [ -f "$DOTFILE" ] && . "$DOTFILE"
+done
