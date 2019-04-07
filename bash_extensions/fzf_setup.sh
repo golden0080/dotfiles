@@ -19,7 +19,7 @@ export FZF_DEFAULT_OPTS="--extended --border"
 
 export FZF_COMPLETION_TRIGGER='--'
 
-export FZF_DEFAULT_COMMAND='fd -d 8'
+export FZF_DEFAULT_COMMAND='fd -d 6'
 
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
