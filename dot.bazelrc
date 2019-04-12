@@ -1,0 +1,1 @@
+build --local_cpu_resources=HOST_CPU*.75 --local_ram_resources=HOST_RAM*.7

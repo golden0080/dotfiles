@@ -1,0 +1,8 @@
+Host gpu0
+    User gh
+    HostName ike-gpu0
+Host github.com
+    IdentityFile ~/.ssh/id_rsa
+Host ike
+    HostName ike-services.ike.lan
+    IdentityFile ~/.ssh/ike_rsa
