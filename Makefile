@@ -1,6 +1,11 @@
 install-screensavers:
 	sudo apt install xscreensaver xscreensaver-data-extra xscreensaver-gl-extra
 
+install-rofi:
+	sudo add-apt-repository ppa:jasonpleau/rofi
+	sudo apt update
+	sudo apt install rofi
+
 install-ag:
 	sudo apt-get install silversearcher-ag
 
