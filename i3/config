@@ -29,6 +29,7 @@ exec_always --no-startup-id "pacmd set-default-sink $MAIN_AUDIO"
 exec_always --no-startup-id "pactl set-sink-volume $MAIN_AUDIO 33%"
 exec_always --no-startup-id "nm-applet"
 exec_always --no-startup-id "which synclient && synclient TapButton1=0 TapButton2=0 RTCornerButton=0 RBCornerButton=0"
+exec_always --no-startup-id "xmodmap ~/dotfiles/dot.Xmodmap &"
 
 exec_always --no-startup-id "pgrep fcitx || fcitx &"
 exec_always --no-startup-id "pgrep clipmenud || clipmenud &"
