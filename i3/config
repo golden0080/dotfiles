@@ -27,6 +27,7 @@ exec_always --no-startup-id "gsettings set org.gnome.desktop.background show-des
 exec_always --no-startup-id "xrandr --output $MAIN_DISPLAY --auto --output $SIDE_DISPLAY --auto --right-of $MAIN_DISPLAY"
 exec_always --no-startup-id "pacmd set-default-sink $MAIN_AUDIO"
 exec_always --no-startup-id "pactl set-sink-volume $MAIN_AUDIO 33%"
+exec_always --no-startup-id "nm-applet"
 
 exec_always --no-startup-id "pgrep fcitx || fcitx &"
 exec_always --no-startup-id "pgrep clipmenud || clipmenud &"
