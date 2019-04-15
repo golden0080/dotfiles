@@ -2,7 +2,9 @@ Host gpu0
     User gh
     HostName ike-gpu0
 Host github.com
+    User git
     IdentityFile ~/.ssh/id_rsa
 Host ike
     HostName ike-services.ike.lan
+    Port 2222
     IdentityFile ~/.ssh/ike_rsa
