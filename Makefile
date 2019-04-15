@@ -23,3 +23,6 @@ install-gitconfig:
 
 install-bazelrc:
 	ln -s ${CURDIR}/dot.bazelrc ${HOME}/.bazelrc
+
+install-markdown:
+	sudo apt install markdown
