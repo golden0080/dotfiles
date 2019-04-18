@@ -3,7 +3,7 @@
 	excludesfile = /Users/gh/.gitignore_global
 [user]
 	name = Guanghui Chen
-	email = gh@turingvideo.com
+	email = guanghui@ikerobotics.com
 [alias]
 	lg   = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
 	todo = grep -n -e TODO -e FIXME -e XXX -e OPTIMIZE -e FIX-ME
