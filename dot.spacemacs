@@ -180,7 +180,7 @@ values."
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '("Source Code Pro"
-                               :size 12
+                               :size 14
                                :weight bold
                                :width normal
                                :powerline-scale 0.2)
@@ -375,6 +375,9 @@ in `dotspacemacs/user-config'."
   "Configuration function for user code.
 This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
+  ;; avy timeout
+  (setq avy-timeout-seconds 0.9)
+
   ;; mac os x modifiers
   (setq mac-command-modifier 'meta)
   (setq flycheck-check-syntax-automatically '(mode-enabled save)) ; Fly check on save
