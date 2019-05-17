@@ -26,3 +26,6 @@ install-bazelrc:
 
 install-markdown:
 	sudo apt install markdown
+
+install-audioctl:
+	sudo apt-get install pavucontrol
