@@ -24,7 +24,7 @@
 	cc = commit
 	ca = commit --amend
 	aa = add .
-  am = add -u .
+  aam = add -u .
   plob = lfs push --object-id
 [branch]
 	autosetuprebase = always
