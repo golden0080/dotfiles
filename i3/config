@@ -129,6 +129,9 @@ bindsym $mod+Shift+p focus parent
 # focus the child container
 bindsym $mod+p focus child
 
+# Simulate Alt+Tab behavior
+bindsym $mod+Tab workspace back_and_forth
+
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "1"
