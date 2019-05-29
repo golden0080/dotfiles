@@ -3,6 +3,7 @@ order += "volume_status"
 order += "online_status"
 order += "vpn_status"
 order += "group sysinfo"
+order += "netdata"
 order += "diskdata"
 order += "battery_level"
 order += "clock"
@@ -17,6 +18,7 @@ battery_level {
   threshold_full = 85
   hide_when_full = False
   notify_low_level = True
+  format = "{icon} {percent}%"
 }
 
 # cycling through London, Warsaw, Tokyo
@@ -32,26 +34,29 @@ diskdata {
   format = '{disk}: {used}/{total_space} ({total})'
 }
 
+netdata {
+  cache_timeout = 3
+  format = "{nic} [\?color=down Spd(Kb): {down}↓ {up}↑] "
+}
+
 group sysinfo {
   position = 'center'
-  min_length = 52
+  min_length = 45
   cycle = 25
   fixed_width = True
   button_toggle = 3
   button_next = 1
   button_prev = 2
-  netdata {
-    cache_timeout = 3
-  }
-  nvidia_smi {}
   sysdata {
     cache_timeout = 5
   }
+  nvidia_smi {}
 }
 
 online_status {
   cache_timeout = 90
   timeout = 5
+  format = "web {icon}"
 }
 
 spotify {
@@ -64,6 +69,7 @@ spotify {
 volume_status {
   cache_timeout = 30
   command = 'pactl'
+  volume_delta = 2
 }
 
 vpn_status {
