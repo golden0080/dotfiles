@@ -6,3 +6,4 @@ install-py3status:
 	sudo pip install stdeb
 	sudo pypi-install py3status
 	sudo pip install pydbus
+	sudo pip install tzlocal pytz
