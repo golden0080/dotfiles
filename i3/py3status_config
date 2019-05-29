@@ -1,0 +1,71 @@
+order += "spotify"
+order += "volume_status"
+order += "online_status"
+order += "vpn_status"
+order += "group sysinfo"
+order += "diskdata"
+order += "battery_level"
+order += "clock"
+
+py3status {
+  nagbar_font = 'pango:Ubuntu Mono 14'
+}
+
+battery_level {
+  battery_id = 'all'
+  hide_seconds = True
+  threshold_full = 85
+  hide_when_full = False
+  notify_low_level = True
+}
+
+# cycling through London, Warsaw, Tokyo
+clock {
+    format = ["{Local}", "{Asia/Shanghai}", "{America/New_York}"]
+    format_time = "{name} {icon}%H:%M:%S"
+}
+
+diskdata {
+  position = 'right'
+  cache_timeout = 15
+  min_length = 26
+  format = '{disk}: {used}/{total_space} ({total})'
+}
+
+group sysinfo {
+  position = 'center'
+  min_length = 52
+  cycle = 25
+  fixed_width = True
+  button_toggle = 3
+  button_next = 1
+  button_prev = 2
+  netdata {
+    cache_timeout = 3
+  }
+  nvidia_smi {}
+  sysdata {
+    cache_timeout = 5
+  }
+}
+
+online_status {
+  cache_timeout = 90
+  timeout = 5
+}
+
+spotify {
+  button_play_pause = 1
+  button_next = 5
+  button_previous = 4
+  cache_timeout = 10
+}
+
+volume_status {
+  cache_timeout = 30
+  command = 'pactl'
+}
+
+vpn_status {
+  cache_timeout = 60
+}
