@@ -24,7 +24,7 @@ battery_level {
 # cycling through London, Warsaw, Tokyo
 clock {
     format = ["{Local}", "{Asia/Shanghai}", "{America/New_York}"]
-    format_time = "{name} {icon}%H:%M:%S"
+    format_time = "%Y/%m/%d (%a) {name} {icon}%H:%M:%S"
 }
 
 diskdata {
