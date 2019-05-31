@@ -60,7 +60,9 @@ values."
      javascript
      react
      (c-c++ :variables
-            c-c++-default-mode-for-headers 'c++-mode)
+            c-c++-default-mode-for-headers 'c++-mode
+            c-c++-enable-clang-support t
+            c-c++-enable-clang-format-on-save t)
      (shell :variables
             shell-default-shell 'term
             shell-default-height 40
