@@ -90,9 +90,11 @@ if [ -n "$PS1" ]; then
     # We're done with our temporary variable
     unset NEW_PROMPT_COMMAND
 
+    PS_HOSTIP=$(hostname -I | awk '{print $1}')
+
     # Set PS1 with our new variable
     # \h - hostname, \u - username
-    PS1='\[\033[36m\]\u:\[\033[33m\]$TRIMMED_PWD \$ \[\033[0m\]'
+    PS1='\[\033[96m\]\u\[\033[92m\][$PS_HOSTIP]:\[\033[33m\]$TRIMMED_PWD \$ \[\033[0m\]'
 fi
 
 # enable color support of ls and also add handy aliases
