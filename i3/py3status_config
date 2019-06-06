@@ -3,8 +3,7 @@ order += "volume_status"
 order += "online_status"
 order += "vpn_status"
 order += "group sysinfo"
-order += "netdata"
-order += "diskdata"
+order += "group io"
 order += "battery_level"
 order += "clock"
 
@@ -27,16 +26,23 @@ clock {
     format_time = "%Y/%m/%d (%a) {name} {icon}%H:%M:%S"
 }
 
-diskdata {
-  position = 'right'
-  cache_timeout = 15
-  min_length = 26
-  format = '{disk}: {used}/{total_space} ({total})'
-}
+group io {
+  position = 'center'
+  min_length = 45
+  cycle = 40
+  fixed_width = True
+  button_toggle = 3
+  button_next = 1
+  button_prev = 2
+  diskdata {
+    cache_timeout = 15
+    format = '{disk}: {used}/{total_space} ({total})'
+  }
 
-netdata {
-  cache_timeout = 3
-  format = "{nic} [\?color=down Spd(Kb): {down}↓ {up}↑] "
+  netdata {
+    cache_timeout = 3
+    format = "{nic} [\?color=down Spd(Kb): {down}↓ {up}↑] "
+  }
 }
 
 group sysinfo {
