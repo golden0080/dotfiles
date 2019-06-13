@@ -1,2 +1,3 @@
 IdentityFile ~/.ssh/id_rsa
 IdentityFile ~/.ssh/ike_rsa
+IdentityFile ~/.ssh/login_rsa
