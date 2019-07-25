@@ -29,3 +29,6 @@ install-markdown:
 
 install-audioctl:
 	sudo apt-get install pavucontrol
+
+install-fcitx:
+	sudo apt install fcitx fcitx-googlepinyin
