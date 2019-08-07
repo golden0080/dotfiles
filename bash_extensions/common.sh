@@ -1,3 +1,5 @@
+set -o physical
+
 export EDITOR=vim
 YELLOW='\[\033[36m\]'
 
