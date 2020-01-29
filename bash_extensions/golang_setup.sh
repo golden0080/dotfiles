@@ -1,5 +1,5 @@
 # Go Version
-export GOVERSION=1.10
+export GOVERSION=1.12
 
 export GOROOT="$HOME/go-install/$GOVERSION"
 export GOPATH="$HOME/go-projects/$GOVERSION"

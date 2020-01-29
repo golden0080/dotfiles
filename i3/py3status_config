@@ -69,7 +69,7 @@ spotify {
   button_play_pause = 1
   button_next = 5
   button_previous = 4
-  cache_timeout = 10
+  cache_timeout = 4
 }
 
 volume_status {

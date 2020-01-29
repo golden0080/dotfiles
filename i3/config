@@ -13,12 +13,12 @@ set $mod Mod1
 
 # Devices for current system
 # --------------------------
-set $MAIN_DISPLAY HDMI-0
-set $SIDE_DISPLAY DP-2
+set $MAIN_DISPLAY DP-2
+set $SIDE_DISPLAY DP-4
 
 # Check audio sink name with `pacmd` -> `list-sinks`
 # do not add quotes to the name
-set $MAIN_AUDIO alsa_output.usb-Logitech_Logitech_G930_Headset-00.analog-stereo
+set $MAIN_AUDIO alsa_output.pci-0000_02_00.1.hdmi-stereo-extra1
 # --------------------------
 
 # Startup Processes
@@ -32,7 +32,7 @@ exec_always --no-startup-id "which synclient && synclient TapButton1=0 TapButton
 exec_always --no-startup-id "xmodmap ~/dotfiles/dot.Xmodmap &"
 
 exec_always --no-startup-id "pgrep fcitx || fcitx &"
-exec_always --no-startup-id "pgrep clipmenud || clipmenud &"
+exec_always --no-startup-id "pgrep greenclip || greenclip daemon &"
 exec_always --no-startup-id "pgrep xscreensaver || xscreensaver -nosplash &"
 # -----------------
 
@@ -83,7 +83,7 @@ bindsym $mod+Shift+m mode "$mode_system"
 # ROFI launcher
 bindsym $mod+d exec --no-startup-id "rofi -combi-modi drun#run#ssh#window -show combi"
 bindsym $mod+a exec --no-startup-id "rofi -show window"
-bindsym $mod+v exec --no-startup-id "CM_LAUNCHER=rofi clipmenu"
+bindsym $mod+v exec --no-startup-id rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
 # There also is the (new) i3 only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
