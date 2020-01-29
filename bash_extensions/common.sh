@@ -18,6 +18,4 @@ function tsize() {
     du -hs -c $1 | tail -n 1
 }
 
-function clean() {
-    clipdel -d .*
-}
+alias clean="greenclip clear"
