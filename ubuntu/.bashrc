@@ -76,8 +76,10 @@ fi
 # If PS1 is not set at all, this is not an interactive
 # shell and we should not mess with it.
 if [ -n "$PS1" ]; then
+    PS_HOSTIP=$(hostname -I | awk '{print $1}')
+
     # A temporary variable to contain our prompt command
-    NEW_PROMPT_COMMAND='TRIMMED_PWD=${PWD: -30}; TRIMMED_PWD=${TRIMMED_PWD:-$PWD}'
+    NEW_PROMPT_COMMAND='TRIMMED_PWD=${PWD: -30}; TRIMMED_PWD=${TRIMMED_PWD:-$PWD}; echo -en "\033]0;$PS_HOSTIP:$PWD\007"'
 
     # If there's an existing prompt command, let's not
     # clobber it
@@ -89,8 +91,6 @@ if [ -n "$PS1" ]; then
 
     # We're done with our temporary variable
     unset NEW_PROMPT_COMMAND
-
-    PS_HOSTIP=$(hostname -I | awk '{print $1}')
 
     # Set PS1 with our new variable
     # \h - hostname, \u - username
