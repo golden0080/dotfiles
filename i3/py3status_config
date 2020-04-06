@@ -1,3 +1,4 @@
+order += "brightness_status"
 order += "spotify"
 order += "volume_status"
 order += "online_status"

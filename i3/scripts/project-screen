@@ -1,0 +1,36 @@
+#! /bin/bash
+set -eo pipefail
+
+if [ "$#" -gt 2 ]; then
+    echo "Provide at most 3 arguments to this command."
+    exit 1
+fi
+
+ALL_DISPLAYS=$(xrandr -q | grep " connected" | cut -f1 -d " ")
+NUM_DISPLAYS=$(echo "$ALL_DISPLAYS" | wc -l)
+
+# if [ "$NUM_DISPLAYS" -lt "2" ]; then
+#     rofi -e "Projection Disabled: No Output Display Found."
+#     exit 2
+# fi
+
+SOURCE_DISPLAYS=$ALL_DISPLAYS
+if [ "$#" == 2 ]; then
+    SOURCE_DISPLAYS="$1 MAIN-Display"$'\n'"$2 SIDE-Display"
+fi
+
+SELECTED_SOURCE=$(echo $SOURCE_DISPLAYS | rofi -dmenu -p "Projection Source" | cut -d" " -f1)
+
+DEST_OPTIONS=""
+for display in $ALL_DISPLAYS; do
+    if [ "$display" != "$SELECTED_SOURCE" ]; then
+        if [ -z "$DEST_OPTIONS" ]; then
+            DEST_OPTIONS="$display"
+        else
+            DEST_OPTIONS="$DEST_OPTIONS\n$display"
+        fi
+    fi
+done
+
+PROJECT_TO=$(echo -e $DEST_OPTIONS | rofi -dmenu -p "Project To")
+xrandr --output $PROJECT_TO --same-as $SOURCE_SELECTED

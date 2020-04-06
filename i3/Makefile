@@ -7,3 +7,6 @@ install-py3status:
 	sudo pypi-install py3status
 	sudo pip install pydbus
 	sudo pip install tzlocal pytz
+
+install-project-screen:
+	sudo ln -s ${CURDIR}/scripts/project-screen /usr/local/bin/project-screen
