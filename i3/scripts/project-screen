@@ -9,17 +9,26 @@ fi
 ALL_DISPLAYS=$(xrandr -q | grep " connected" | cut -f1 -d " ")
 NUM_DISPLAYS=$(echo "$ALL_DISPLAYS" | wc -l)
 
-# if [ "$NUM_DISPLAYS" -lt "2" ]; then
-#     rofi -e "Projection Disabled: No Output Display Found."
-#     exit 2
-# fi
-
-SOURCE_DISPLAYS=$ALL_DISPLAYS
-if [ "$#" == 2 ]; then
-    SOURCE_DISPLAYS="$1 MAIN-Display"$'\n'"$2 SIDE-Display"
+if [ "$NUM_DISPLAYS" -lt "2" ]; then
+    rofi -e "Projection Disabled: No Output Display Found."
+    exit 2
 fi
 
-SELECTED_SOURCE=$(echo $SOURCE_DISPLAYS | rofi -dmenu -p "Projection Source" | cut -d" " -f1)
+SOURCE_DISPLAYS=""
+if [ "$#" == 2 ]; then
+    SOURCE_DISPLAYS="$1 MAIN-Display\n$2 SIDE-Display"
+else
+    for display in $ALL_DISPLAYS; do
+        # Do stuff here
+        if [ -z "$SOURCE_DISPLAYS" ]; then
+            SOURCE_DISPLAYS="$display"
+        else
+            SOURCE_DISPLAYS="$SOURCE_DISPLAYS\n$display"
+        fi
+    done
+fi
+
+SELECTED_SOURCE=$(echo -e $SOURCE_DISPLAYS | rofi -dmenu -p "Projection Source" | cut -d" " -f1)
 
 DEST_OPTIONS=""
 for display in $ALL_DISPLAYS; do
@@ -33,4 +42,8 @@ for display in $ALL_DISPLAYS; do
 done
 
 PROJECT_TO=$(echo -e $DEST_OPTIONS | rofi -dmenu -p "Project To")
-xrandr --output $PROJECT_TO --same-as $SOURCE_SELECTED
+if [ -z "$PROJECT_MODE" ]; then
+    xrandr --output $PROJECT_TO --same-as $SELECTED_SOURCE
+else
+    xrandr --output $PROJECT_TO --mode $PROJECT_MODE --same-as $SELECTED_SOURCE
+fi
