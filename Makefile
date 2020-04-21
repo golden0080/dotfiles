@@ -32,3 +32,7 @@ install-audioctl:
 
 install-fcitx:
 	sudo apt install fcitx fcitx-googlepinyin
+
+install-default-sudo:
+	cat sudoers/10-default-sudo | sed "s;{{USER}};${USER};g" | sudo tee /etc/sudoers.d/10-default-sudo
+
