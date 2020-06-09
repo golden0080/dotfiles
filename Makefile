@@ -17,6 +17,8 @@ install-waka:
 	sudo pip install wakatime
 
 install-fd:
+	wget -O /tmp/fd-install.deb https://github.com/sharkdp/fd/releases/download/v8.1.1/fd_8.1.1_amd64.deb
+	sudo dpkg -i /tmp/fd-install.deb
 
 install-gitconfig:
 	ln -s ${CURDIR}/dot.gitconfig ${HOME}/.gitconfig

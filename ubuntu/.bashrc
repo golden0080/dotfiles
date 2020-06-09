@@ -146,5 +146,3 @@ for DOTFILE in `find ~/dotfiles/bash_extensions`
 do
     [ -f "$DOTFILE" ] && . "$DOTFILE"
 done
-
-source $HOME/.ike_env

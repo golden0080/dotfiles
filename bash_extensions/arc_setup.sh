@@ -1,1 +1,1 @@
-export PATH=$PATH:/usr/local/bin/arc/arcanist/bin/
+export PATH=$PATH:/usr/local/ike/arcanist/bin/
