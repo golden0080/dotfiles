@@ -38,3 +38,7 @@ install-fcitx:
 install-default-sudo:
 	cat sudoers/10-default-sudo | sed "s;{{USER}};${USER};g" | sudo tee /etc/sudoers.d/10-default-sudo
 
+install-spacemacs:
+	git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
+	ln -sf ${CURDIR}/dot.spacemacs ~/.spacemacs
+	ln -sf ${CURDIR}/python/pycodestype.autopep8 ~/.config/pycodestyle
