@@ -42,3 +42,13 @@ install-spacemacs:
 	git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
 	ln -sf ${CURDIR}/dot.spacemacs ~/.spacemacs
 	ln -sf ${CURDIR}/python/pycodestype.autopep8 ~/.config/pycodestyle
+
+
+GO_VERSION="1.14.4"
+
+install-golang:
+	echo "Installing Golang version ${GO_VERSION}..."
+	wget https://golang.org/dl/go${GO_VERSION}.linux-amd64.tar.gz -O /tmp/golang-${GO_VERSION}.tar.gz
+	mkdir -p ~/go-install/${GO_VERSION} ~/go-projects/${GO_VERSION}/bin
+	tar -C ~/go-install/${GO_VERSION}/ -xzf /tmp/golang-${GO_VERSION}.tar.gz
+	echo "--> Golang ${GO_VERSION} installed, please start a new terminal to use Golang..."

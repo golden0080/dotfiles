@@ -1,7 +1,7 @@
 # Go Version
-export GOVERSION=1.12
+export GOVERSION=1.14.4
 
-export GOROOT="$HOME/go-install/$GOVERSION"
+export GOROOT="$HOME/go-install/$GOVERSION/go"
 export GOPATH="$HOME/go-projects/$GOVERSION"
 
 if [[ ! -d $GOROOT ]] || [[ ! -d $GOPATH ]]; then
