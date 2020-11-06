@@ -1,0 +1,157 @@
+/*
+ * sidetab-adapta theme,
+ * based on sidetab theme by deadguy.
+ *
+ * This theme has been dedicated to the public domain.
+ *
+ */
+
+configuration {
+        show-icons:   true;
+        sidebar-mode: true;
+}
+
+* {
+        background-color:           #222d32;
+        text-color:                 #ffffff;
+
+        accent-color:               #00bcd4;
+        accent2-color:              #4db6ac;
+        hover-color:                #39454b;
+        urgent-color:               #ff5252;
+        window-color:               #ffffff;
+
+        selected-normal-foreground: @window-color;
+        normal-foreground:          @text-color;
+        selected-normal-background: @hover-color;
+        normal-background:          @background-color;
+
+        selected-urgent-foreground: @background-color;
+        urgent-foreground:          @text-color;
+        selected-urgent-background: @urgent-color;
+        urgent-background:          @background-color;
+
+        selected-active-foreground: @window-color;
+        active-foreground:          @text-color;
+        selected-active-background: @hover-color;
+        active-background:          @accent-color;
+
+	      base00:                     #263238;
+	      base01:                     #2E3C43;
+	      base02:                     #314549;
+	      base03:                     #546E7A;
+	      base04:                     #B2CCD6;
+	      base05:                     #EEFFFF;
+	      base06:                     #EEFFFF;
+	      base07:                     #FFFFFF;
+	      base08:                     #F07178;
+	      base09:                     #F78C6C;
+	      base0A:                     #FFCB6B;
+	      base0B:                     #C3E88D;
+	      base0C:                     #89DDFF;
+	      base0D:                     #82AAFF;
+	      base0E:                     #C792EA;
+	      base0F:                     #FF5370;
+}
+
+#window {
+        anchor:   west;
+        location: west;
+        width:    400px;
+        height:   100%;
+}
+
+#mainbox {
+        children: [ inputbar, entry, message, listview, mode-switcher ];
+}
+
+inputbar {
+	padding: 5px 15px;
+	children: [prompt, textbox-prompt-colon, case-indicator];
+}
+
+prompt {
+	text-color: @base0D;
+}
+
+textbox-prompt-colon {
+	expand: false;
+	str: ":";
+	margin: 0 1ch 0 0;
+	text-color: @base0D;
+}
+
+entry {
+	text-color: @base0A;
+}
+
+case-indicator {
+	text-color: @base0F;
+}
+
+entry {
+        expand: false;
+        margin: 8px;
+}
+
+element {
+        padding: 6px;
+}
+
+element normal.normal {
+        background-color: @normal-background;
+        text-color:       @normal-foreground;
+}
+
+element normal.urgent {
+        background-color: @urgent-background;
+        text-color:       @urgent-foreground;
+}
+
+element normal.active {
+        background-color: @active-background;
+        text-color:       @active-foreground;
+}
+
+element selected.normal {
+        background-color: @selected-normal-background;
+        text-color:       @selected-normal-foreground;
+        border:           0 4px solid 0 0;
+        border-color:     @accent2-color;
+}
+
+element selected.urgent {
+        background-color: @selected-urgent-background;
+        text-color:       @selected-urgent-foreground;
+}
+
+element selected.active {
+        background-color: @selected-active-background;
+        text-color:       @selected-active-foreground;
+}
+
+element alternate.normal {
+        background-color: @normal-background;
+        text-color:       @normal-foreground;
+}
+
+element alternate.urgent {
+        background-color: @urgent-background;
+        text-color:       @urgent-foreground;
+}
+
+element alternate.active {
+        background-color: @active-background;
+        text-color:       @active-foreground;
+}
+
+button {
+        padding: 8px;
+}
+
+button selected {
+        background-color: @active-background;
+        text-color:       @background-color;
+}
+
+/* vim: ft=css
