@@ -1,3 +1,0 @@
-rofi.modi:  window,run,ssh,drun
-rofi.threads: 3
-rofi.show-icons: true
