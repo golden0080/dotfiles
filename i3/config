@@ -35,6 +35,7 @@ exec_always --no-startup-id "xmodmap ~/dotfiles/dot.Xmodmap &"
 exec_always --no-startup-id "pgrep fcitx || fcitx &"
 exec_always --no-startup-id "pgrep greenclip || greenclip daemon &"
 exec_always --no-startup-id "pgrep xscreensaver || xscreensaver -nosplash &"
+exec_always --no-startup-id "pgrep dunst || dunst -config ~/.config/dunst/dunstrc"
 # -----------------
 
 # Font for window titles. Will also be used by the bar unless a different font

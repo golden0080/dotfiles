@@ -1,6 +1,8 @@
 install-config:
 	ln -s ${CURDIR}/config ${HOME}/.config/i3/config
 	ln -s ${CURDIR}/py3status_config ${HOME}/.config/i3/i3status.conf
+  mkdir -p ${HOME}/.config/dunst
+	ln -s ${CURDIR}/dunstrc ${HOME}/.config/dunst/dunstrc
 
 install-py3status:
 	sudo pip install stdeb

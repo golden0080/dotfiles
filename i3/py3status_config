@@ -54,10 +54,14 @@ group sysinfo {
   button_toggle = 3
   button_next = 1
   button_prev = 2
-  sysdata {
+  sysdata 0 {
     cache_timeout = 5
   }
   nvidia_smi {}
+  sysdata 1 {
+    cache_timeout = 45
+    format = "CPU Temp: {cpu_temp}{temp_unit}"
+  }
 }
 
 online_status {
