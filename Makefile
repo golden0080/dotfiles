@@ -41,7 +41,7 @@ install-default-sudo:
 install-spacemacs:
 	git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
 	ln -sf ${CURDIR}/dot.spacemacs ~/.spacemacs
-	ln -sf ${CURDIR}/python/pycodestype.autopep8 ~/.config/pycodestyle
+	ln -sf ${CURDIR}/python/pycodestyle.autopep8 ~/.config/pycodestyle
 
 
 GO_VERSION="1.14.4"
