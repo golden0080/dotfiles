@@ -12,3 +12,6 @@ install-py3status:
 
 install-project-screen:
 	sudo ln -s ${CURDIR}/scripts/project-screen /usr/local/bin/project-screen
+
+install-i3-rofi-mark:
+	pip3 install https://github.com/golden0080/i3-rofi-mark/archive/refs/heads/master.zip
