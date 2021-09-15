@@ -65,6 +65,11 @@ bindsym $mod+Shift+q kill
 # lock screen
 bindsym $mod+Shift+s exec --no-startup-id "xscreensaver-command -lock"
 
+# Window Marking/Jumping
+bindsym $mod+Shift+a exec "i3-rofi-mark mark"
+bindsym $mod+g exec "i3-rofi-mark goto"
+bindsym $mod+Shift+g exec "i3-rofi-mark unmark"
+
 set $mode_system System (l) lock, (e) logout, (s) suspend, (r) reboot, (p) shutdown
 mode "$mode_system" {
     bindsym l exec --no-startup-id "xscreensaver-command -lock", mode "default"
