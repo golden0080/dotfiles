@@ -1,3 +1,4 @@
+order += "timer"
 order += "brightness_status"
 order += "spotify"
 order += "volume_status"
@@ -10,6 +11,9 @@ order += "clock"
 
 py3status {
   nagbar_font = 'pango:Ubuntu Mono 14'
+}
+
+timer {
 }
 
 battery_level {
