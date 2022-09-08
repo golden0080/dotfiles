@@ -101,6 +101,9 @@ values."
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
    dotspacemacs-additional-packages '(py-autopep8
+                                      (evil-magit :location (recipe
+                                                             :fetcher github
+                                                             :repo "emacs-evil/evil-magit"))
                                       )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
