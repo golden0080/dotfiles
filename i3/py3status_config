@@ -1,9 +1,9 @@
 order += "timer"
 order += "brightness_status"
+order += "brightness_status"
 order += "spotify"
 order += "volume_status"
-order += "online_status"
-order += "vpn_status"
+order += "group miscinfo"
 order += "group sysinfo"
 order += "group io"
 order += "battery_level"
@@ -68,12 +68,6 @@ group sysinfo {
   }
 }
 
-online_status {
-  cache_timeout = 90
-  timeout = 5
-  format = "web {icon}"
-}
-
 spotify {
   button_play_pause = 1
   button_next = 5
@@ -87,6 +81,25 @@ volume_status {
   volume_delta = 2
 }
 
-vpn_status {
-  cache_timeout = 60
+group miscinfo {
+  position = 'center'
+  cycle = 10
+  min_width = 10
+  fixed_width = True
+  button_toggle = 3
+  button_next = 1
+  button_prev = 2
+  online_status {
+    cache_timeout = 60
+    timeout = 5
+    format = "web {icon}"
+  }
+  vpn_status {
+    cache_timeout = 60
+  }
+  process_status {
+    cache_timeout = 20
+    format = "ScreenSaver {icon}"
+    process = "xscreensaver"
+  }
 }
