@@ -19,3 +19,7 @@ function tsize() {
 }
 
 alias clean="greenclip clear"
+
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS="@im=fcitx"
