@@ -30,7 +30,7 @@ values."
    dotspacemacs-configuration-layer-path '()
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(
+   '(rust
      ruby
      sql
      nginx
@@ -104,6 +104,7 @@ values."
                                       (evil-magit :location (recipe
                                                              :fetcher github
                                                              :repo "emacs-evil/evil-magit"))
+                                      sqlite3
                                       )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -500,7 +501,7 @@ values."
    ;; List of search tool executable names. Spacemacs uses the first installed
    ;; tool of the list. Supported tools are `ag', `pt', `ack' and `grep'.
    ;; (default '("ag" "pt" "ack" "grep"))
-   dotspacemacs-search-tools '("ag" "pt" "ack" "grep")
+   dotspacemacs-search-tools '("ag" "ack" "grep")
    ;; The default package repository used if no explicit repository has been
    ;; specified with an installed package.
    ;; Not used for now. (default nil)
@@ -551,7 +552,7 @@ layers configuration. You are free to put any user code."
   (setq mac-command-modifier 'meta)
   (setq flycheck-check-syntax-automatically '(mode-enabled save)) ; Fly check on save
 
-  (global-linum-mode)
+  ;; (global-linum-mode)
   (setq global-wakatime-mode t)
 
   (global-hl-line-mode) ; Enable current line highlight
@@ -574,7 +575,7 @@ layers configuration. You are free to put any user code."
 
   ;; js mode
   (setq-default js2-basic-offset 2)
-)
+  )
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
@@ -641,63 +642,63 @@ layers configuration. You are free to put any user code."
 This is an auto-generated function, do not modify its content directly, use
 Emacs customize menu instead.
 This function is called at the very end of Spacemacs initialization."
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(compilation-message-face 'default)
- '(cua-global-mark-cursor-color "#2aa198")
- '(cua-normal-cursor-color "#839496")
- '(cua-overwrite-cursor-color "#b58900")
- '(cua-read-only-cursor-color "#859900")
- '(custom-safe-themes
-   '("66132890ee1f884b4f8e901f0c61c5ed078809626a547dbefbb201f900d03fd8" default))
- '(evil-want-Y-yank-to-eol nil)
- '(highlight-changes-colors '("#d33682" "#6c71c4"))
- '(highlight-symbol-colors
-   (--map
-    (solarized-color-blend it "#002b36" 0.25)
-    '("#b58900" "#2aa198" "#dc322f" "#6c71c4" "#859900" "#cb4b16" "#268bd2")))
- '(highlight-symbol-foreground-color "#93a1a1")
- '(highlight-tail-colors
-   '(("#073642" . 0)
-     ("#546E00" . 20)
-     ("#00736F" . 30)
-     ("#00629D" . 50)
-     ("#7B6000" . 60)
-     ("#8B2C02" . 70)
-     ("#93115C" . 85)
-     ("#073642" . 100)))
- '(hl-bg-colors
-   '("#7B6000" "#8B2C02" "#990A1B" "#93115C" "#3F4D91" "#00629D" "#00736F" "#546E00"))
- '(hl-fg-colors
-   '("#002b36" "#002b36" "#002b36" "#002b36" "#002b36" "#002b36" "#002b36" "#002b36"))
- '(magit-diff-use-overlays nil)
- '(nrepl-message-colors
-   '("#dc322f" "#cb4b16" "#b58900" "#546E00" "#B4C342" "#00629D" "#2aa198" "#d33682" "#6c71c4"))
- '(org-agenda-files
-   '("/Users/gh/org/yaan.org" "/Users/gh/org/box_pro.org" "/Users/gh/org/bscf.org" "/Users/gh/org/eng.org" "/Users/gh/org/turing.org" "/Users/gh/org/week18.org" "/Users/gh/org/week19.org" "/Users/gh/org/zeno-daemon.org" "/Users/gh/org/zeno-server.org" "/Users/gh/org/private/bitcoin.org" "/Users/gh/org/private/life.org"))
- '(package-selected-packages
-   '(tern annalist transient py-autopep8 spotify helm-spotify-plus multi wakatime-mode spinner log4e gntp parent-mode request gitignore-mode pkg-info flx treepy graphql anzu diminish autothemer pos-tip bind-map popup rvm ruby-tools ruby-test-mode rubocop rspec-mode robe rbenv rake minitest chruby bundler inf-ruby sql-indent phpunit phpcbf php-extras php-auto-yasnippets drupal-mode php-mode nginx-mode org-category-capture alert projectile ghub let-alist bind-key packed iedit f goto-chg epl s white-sand-theme rebecca-theme org-mime exotica-theme tide typescript-mode powerline markdown-mode smartparens highlight evil undo-tree flycheck helm helm-core avy org-plus-contrib magit magit-popup git-commit with-editor dash async hydra web-mode tagedit slim-mode scss-mode sass-mode pug-mode less-css-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data disaster company-c-headers cmake-mode clang-format window-numbering spacemacs-theme ido-vertical-mode quelpa package-build yapfify yaml-mode xterm-color web-beautify shell-pop pyvenv pytest pyenv-mode py-isort pip-requirements multi-term livid-mode skewer-mode simple-httpd live-py-mode json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc ibuffer-projectile hy-mode helm-pydoc helm-company helm-c-yasnippet go-guru go-eldoc fuzzy eshell-z eshell-prompt-extras esh-help cython-mode csv-mode dash-functional company-statistics company-quickhelp company-go go-mode company-anaconda company coffee-mode auto-yasnippet yasnippet anaconda-mode pythonic ac-ispell auto-complete zonokai-theme zenburn-theme zen-and-art-theme ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package unfill underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme tronesque-theme toxi-theme toc-org tao-theme tangotango-theme tango-plus-theme tango-2-theme sunny-day-theme sublime-themes subatomic256-theme subatomic-theme spaceline spacegray-theme soothe-theme solarized-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme smeargle seti-theme reverse-theme restart-emacs rainbow-delimiters railscasts-theme purple-haze-theme professional-theme popwin planet-theme phoenix-dark-pink-theme phoenix-dark-mono-theme persp-mode pcre2el pastels-on-dark-theme paradox orgit organic-green-theme org-projectile org-present org-pomodoro org-download org-bullets open-junk-file omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme noctilux-theme niflheim-theme neotree naquadah-theme mwim mustang-theme move-text monokai-theme monochrome-theme molokai-theme moe-theme mmm-mode minimal-theme material-theme markdown-toc majapahit-theme magit-gitflow madhat2r-theme macrostep lush-theme lorem-ipsum linum-relative link-hint light-soap-theme jbeans-theme jazz-theme ir-black-theme inkpot-theme info+ indent-guide hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt heroku-theme hemisu-theme help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-ag hc-zenburn-theme gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md gandalf-theme flycheck-pos-tip flx-ido flatui-theme flatland-theme firebelly-theme fill-column-indicator farmhouse-theme fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-collection evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu espresso-theme elisp-slime-nav dumb-jump dracula-theme django-theme define-word darktooth-theme darkokai-theme darkmine-theme darkburn-theme dakrone-theme cyberpunk-theme column-enforce-mode color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized clues-theme clean-aindent-mode cherry-blossom-theme busybee-theme bubbleberry-theme birds-of-paradise-plus-theme badwolf-theme auto-highlight-symbol auto-compile apropospriate-theme anti-zenburn-theme ample-zen-theme ample-theme alect-themes aggressive-indent afternoon-theme adaptive-wrap ace-window ace-link ace-jump-helm-line))
- '(pos-tip-background-color "#073642")
- '(pos-tip-foreground-color "#93a1a1")
- '(smartrep-mode-line-active-bg (solarized-color-blend "#859900" "#073642" 0.2))
- '(term-default-bg-color "#002b36")
- '(term-default-fg-color "#839496")
- '(vc-annotate-background-mode nil)
- '(weechat-color-list
-   '(unspecified "#002b36" "#073642" "#990A1B" "#dc322f" "#546E00" "#859900" "#7B6000" "#b58900" "#00629D" "#268bd2" "#93115C" "#d33682" "#00736F" "#2aa198" "#839496" "#657b83"))
- '(which-key-mode t)
- '(xterm-color-names
-   ["#073642" "#dc322f" "#859900" "#b58900" "#268bd2" "#d33682" "#2aa198" "#eee8d5"])
- '(xterm-color-names-bright
-   ["#002b36" "#cb4b16" "#586e75" "#657b83" "#839496" "#6c71c4" "#93a1a1" "#fdf6e3"]))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((((class color) (min-colors 89)) (:foreground "#ffffff" :background "#263238"))))
- '(highlight-parentheses-highlight ((nil (:weight ultra-bold))) t))
-)
+  (custom-set-variables
+   ;; custom-set-variables was added by Custom.
+   ;; If you edit it by hand, you could mess it up, so be careful.
+   ;; Your init file should contain only one such instance.
+   ;; If there is more than one, they won't work right.
+   '(compilation-message-face 'default)
+   '(cua-global-mark-cursor-color "#2aa198")
+   '(cua-normal-cursor-color "#839496")
+   '(cua-overwrite-cursor-color "#b58900")
+   '(cua-read-only-cursor-color "#859900")
+   '(custom-safe-themes
+     '("66132890ee1f884b4f8e901f0c61c5ed078809626a547dbefbb201f900d03fd8" default))
+   '(evil-want-Y-yank-to-eol nil)
+   '(highlight-changes-colors '("#d33682" "#6c71c4"))
+   '(highlight-symbol-colors
+     (--map
+      (solarized-color-blend it "#002b36" 0.25)
+      '("#b58900" "#2aa198" "#dc322f" "#6c71c4" "#859900" "#cb4b16" "#268bd2")))
+   '(highlight-symbol-foreground-color "#93a1a1")
+   '(highlight-tail-colors
+     '(("#073642" . 0)
+       ("#546E00" . 20)
+       ("#00736F" . 30)
+       ("#00629D" . 50)
+       ("#7B6000" . 60)
+       ("#8B2C02" . 70)
+       ("#93115C" . 85)
+       ("#073642" . 100)))
+   '(hl-bg-colors
+     '("#7B6000" "#8B2C02" "#990A1B" "#93115C" "#3F4D91" "#00629D" "#00736F" "#546E00"))
+   '(hl-fg-colors
+     '("#002b36" "#002b36" "#002b36" "#002b36" "#002b36" "#002b36" "#002b36" "#002b36"))
+   '(magit-diff-use-overlays nil)
+   '(nrepl-message-colors
+     '("#dc322f" "#cb4b16" "#b58900" "#546E00" "#B4C342" "#00629D" "#2aa198" "#d33682" "#6c71c4"))
+   '(org-agenda-files
+     '("/Users/gh/org/yaan.org" "/Users/gh/org/box_pro.org" "/Users/gh/org/bscf.org" "/Users/gh/org/eng.org" "/Users/gh/org/turing.org" "/Users/gh/org/week18.org" "/Users/gh/org/week19.org" "/Users/gh/org/zeno-daemon.org" "/Users/gh/org/zeno-server.org" "/Users/gh/org/private/bitcoin.org" "/Users/gh/org/private/life.org"))
+   '(package-selected-packages
+     '(cargo counsel-gtags counsel swiper ivy dap-mode lsp-docker lsp-treemacs bui lsp-mode seq ggtags helm-gtags wfnames racer ron-mode rust-mode toml-mode transient py-autopep8 spotify helm-spotify-plus multi wakatime-mode spinner log4e gntp parent-mode request gitignore-mode pkg-info flx treepy graphql anzu diminish autothemer pos-tip bind-map popup rvm ruby-tools ruby-test-mode rubocop rspec-mode robe rbenv rake minitest chruby bundler inf-ruby sql-indent phpunit phpcbf php-extras php-auto-yasnippets drupal-mode php-mode nginx-mode org-category-capture alert projectile ghub let-alist bind-key packed iedit f goto-chg epl s white-sand-theme rebecca-theme org-mime exotica-theme tide typescript-mode powerline markdown-mode smartparens highlight evil undo-tree flycheck helm helm-core avy org-plus-contrib magit magit-popup git-commit with-editor dash async hydra web-mode tagedit slim-mode scss-mode sass-mode pug-mode less-css-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data disaster company-c-headers cmake-mode clang-format window-numbering spacemacs-theme ido-vertical-mode quelpa package-build yapfify yaml-mode xterm-color web-beautify shell-pop pyvenv pytest pyenv-mode py-isort pip-requirements multi-term livid-mode skewer-mode simple-httpd live-py-mode json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc ibuffer-projectile hy-mode helm-pydoc helm-company helm-c-yasnippet go-guru go-eldoc fuzzy eshell-z eshell-prompt-extras esh-help cython-mode csv-mode company-tern dash-functional tern company-statistics company-quickhelp company-go go-mode company-anaconda company coffee-mode auto-yasnippet yasnippet anaconda-mode pythonic ac-ispell auto-complete zonokai-theme zenburn-theme zen-and-art-theme ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package unfill underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme tronesque-theme toxi-theme toc-org tao-theme tangotango-theme tango-plus-theme tango-2-theme sunny-day-theme sublime-themes subatomic256-theme subatomic-theme spaceline spacegray-theme soothe-theme solarized-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme smeargle seti-theme reverse-theme restart-emacs rainbow-delimiters railscasts-theme purple-haze-theme professional-theme popwin planet-theme phoenix-dark-pink-theme phoenix-dark-mono-theme persp-mode pcre2el pastels-on-dark-theme paradox orgit organic-green-theme org-projectile org-present org-pomodoro org-download org-bullets open-junk-file omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme noctilux-theme niflheim-theme neotree naquadah-theme mwim mustang-theme move-text monokai-theme monochrome-theme molokai-theme moe-theme mmm-mode minimal-theme material-theme markdown-toc majapahit-theme magit-gitflow madhat2r-theme macrostep lush-theme lorem-ipsum linum-relative link-hint light-soap-theme jbeans-theme jazz-theme ir-black-theme inkpot-theme info+ indent-guide hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt heroku-theme hemisu-theme help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-ag hc-zenburn-theme gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md gandalf-theme flycheck-pos-tip flx-ido flatui-theme flatland-theme firebelly-theme fill-column-indicator farmhouse-theme fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-collection evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu espresso-theme elisp-slime-nav dumb-jump dracula-theme django-theme define-word darktooth-theme darkokai-theme darkmine-theme darkburn-theme dakrone-theme cyberpunk-theme column-enforce-mode color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized clues-theme clean-aindent-mode cherry-blossom-theme busybee-theme bubbleberry-theme birds-of-paradise-plus-theme badwolf-theme auto-highlight-symbol auto-compile apropospriate-theme anti-zenburn-theme ample-zen-theme ample-theme alect-themes aggressive-indent afternoon-theme adaptive-wrap ace-window ace-link ace-jump-helm-line))
+   '(pos-tip-background-color "#073642")
+   '(pos-tip-foreground-color "#93a1a1")
+   '(smartrep-mode-line-active-bg (solarized-color-blend "#859900" "#073642" 0.2))
+   '(term-default-bg-color "#002b36")
+   '(term-default-fg-color "#839496")
+   '(vc-annotate-background-mode nil)
+   '(weechat-color-list
+     '(unspecified "#002b36" "#073642" "#990A1B" "#dc322f" "#546E00" "#859900" "#7B6000" "#b58900" "#00629D" "#268bd2" "#93115C" "#d33682" "#00736F" "#2aa198" "#839496" "#657b83"))
+   '(which-key-mode t)
+   '(xterm-color-names
+     ["#073642" "#dc322f" "#859900" "#b58900" "#268bd2" "#d33682" "#2aa198" "#eee8d5"])
+   '(xterm-color-names-bright
+     ["#002b36" "#cb4b16" "#586e75" "#657b83" "#839496" "#6c71c4" "#93a1a1" "#fdf6e3"]))
+  (custom-set-faces
+   ;; custom-set-faces was added by Custom.
+   ;; If you edit it by hand, you could mess it up, so be careful.
+   ;; Your init file should contain only one such instance.
+   ;; If there is more than one, they won't work right.
+   '(default ((((class color) (min-colors 89)) (:foreground "#ffffff" :background "#263238"))))
+   '(highlight-parentheses-highlight ((nil (:weight ultra-bold))) t))
+  )

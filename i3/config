@@ -32,6 +32,7 @@ exec_always --no-startup-id "gsettings set org.gnome.desktop.background show-des
 exec_always --no-startup-id "pacmd set-default-sink $MAIN_AUDIO"
 exec_always --no-startup-id "pactl set-sink-volume $MAIN_AUDIO 33%"
 exec_always --no-startup-id "nm-applet"
+exec_always --no-startup-id "blueman-applet &"
 exec_always --no-startup-id "xmodmap ~/dotfiles/dot.Xmodmap &"
 
 exec_always --no-startup-id "pgrep fcitx5 || fcitx5 &"
@@ -60,7 +61,7 @@ font pango:monospace 8
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec terminator
+bindsym $mod+Return exec alacritty
 
 # kill focused window
 bindsym $mod+Shift+q kill
