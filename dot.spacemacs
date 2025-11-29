@@ -329,16 +329,16 @@ values."
    ;; works in the GUI. (default nil)
    dotspacemacs-distinguish-gui-tab nil
    ;; If non nil `Y' is remapped to `y$' in Evil states. (default nil)
-   dotspacemacs-remap-Y-to-y$ nil
+   vim-style-remap-Y-to-y$ nil
    ;; If non-nil, the shift mappings `<' and `>' retain visual state if used
    ;; there. (default t)
-   dotspacemacs-retain-visual-state-on-shift t
+   vim-style-retain-visual-state-on-shift t
    ;; If non-nil, J and K move lines up and down when in visual mode.
    ;; (default nil)
-   dotspacemacs-visual-line-move-text nil
+   vim-style-visual-line-move-text nil
    ;; If non nil, inverse the meaning of `g' in `:substitute' Evil ex-command.
    ;; (default nil)
-   dotspacemacs-ex-substitute-global nil
+   vim-style-ex-substitute-global nil
    ;; Name of the default layout (default "Default")
    dotspacemacs-default-layout-name "Default"
 
@@ -460,7 +460,11 @@ values."
    ;;   :size-limit-kb 1000)
    ;; When used in a plist, `visual' takes precedence over `relative'.
    ;; (default nil)
-   dotspacemacs-line-numbers nil
+   dotspacemacs-line-numbers '(:visual t
+                                       :disabled-for-modes dired-mode
+                                       doc-view-mode
+                                       pdf-view-mode
+                                       :size-limit-kb 1000)
 
    ;; Code folding method. Possible values are `evil', `origami' and `vimish'.
    ;; (default 'evil)
@@ -558,7 +562,6 @@ layers configuration. You are free to put any user code."
   (setq global-wakatime-mode t)
 
   (global-hl-line-mode) ; Enable current line highlight
-  (setq dotspacemacs-line-numbers t)
 
   ;; org mode
   (spacemacs/set-leader-keys-for-major-mode 'org-mode "[" 'org-agenda-file-to-front)
@@ -572,7 +575,6 @@ layers configuration. You are free to put any user code."
 
   ;; python mode
   (setq python-indent-offset 4)
-  (add-hook 'python-mode-hook 'py-autopep8-enable-on-save)
   ;; (remove-hook `python-mode-hook `turn-on-evil-matchit-mode)
 
   ;; js mode
