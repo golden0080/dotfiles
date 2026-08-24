@@ -26,15 +26,21 @@ output $SIDE_DISPLAY {
   pos 3072 800
 }
 
+exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP XMODIFIERS QT_IM_MODULES
+exec hash dbus-update-activation-environment 2>/dev/null && \
+     dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
+exec dbus-update-activation-environment --all
+
 exec_always --no-startup-id "pacmd set-default-sink $MAIN_AUDIO"
 exec_always --no-startup-id "pactl set-sink-volume $MAIN_AUDIO 33%"
 exec_always --no-startup-id "nm-applet"
 exec_always --no-startup-id "xmodmap ~/dotfiles/dot.Xmodmap &"
 
-exec_always --no-startup-id "pgrep fcitx5 || fcitx5 &"
+exec_always --no-startup-id "pkill fcitx5 || fcitx5 &"
 exec_always --no-startup-id "wl-paste --watch cliphist store"
-exec_always --no-startup-id "pgrep xscreensaver || xscreensaver -nosplash &"
-exec_always --no-startup-id "pgrep dunst || dunst -config ~/.config/dunst/dunstrc"
+exec_always --no-startup-id "pgrep swaync || swaync"
+exec_always --no-startup-id "pgrep -x flameshot || flameshot"
+exec_always --no-startup-id pgrep swayidle || swayidle -w timeout 480 'gtklock -d' timeout 960 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' before-sleep 'gtklock -d' &
 # -----------------
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -55,14 +61,20 @@ font pango:monospace 8
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
+# SwayNotificationCenter - call out all notifications
+bindsym $mod+Shift+n exec swaync-client -t -sw
+
 # start a terminal
-bindsym $mod+Return exec terminator
+bindsym $mod+Return exec alacritty
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
 # lock screen
 bindsym $mod+Shift+s exec --no-startup-id "xscreensaver-command -lock"
+
+# screenshot
+bindsym $mod+Shift+backslash exec --no-startup-id flameshot gui
 
 # Window Marking/Jumping
 bindsym $mod+Shift+a exec "i3-rofi-mark mark"
@@ -71,36 +83,38 @@ bindsym $mod+Shift+g exec "i3-rofi-mark unmark"
 
 set $mode_system System (l) lock, (e) logout, (s) suspend, (r) reboot, (p) shutdown
 mode "$mode_system" {
-    bindsym l exec --no-startup-id "xscreensaver-command -lock", mode "default"
-    bindsym e exec --no-startup-id i3-msg exit, mode "default"
-    bindsym s exec --no-startup-id "xscreensaver-command -lock && systemctl suspend", mode "default"
-    # bindsym h exec --no-startup-id "xscreensaver-command -lock && systemctl hibernate", mode "default"
-    bindsym r exec --no-startup-id systemctl reboot, mode "default"
-    bindsym p exec --no-startup-id systemctl poweroff, mode "default"
+    bindsym l exec gtklock -d, mode "default"
+    bindsym e exec swaymsg exit, mode "default"
+    bindsym s exec gtklock -d && systemctl suspend, mode "default"
+    # bindsym h exec swaylock -f -c 000000 && systemctl hibernate, mode "default"
+    bindsym r exec systemctl reboot, mode "default"
+    bindsym p exec systemctl poweroff, mode "default"
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
 bindsym $mod+Shift+m mode "$mode_system"
+bindsym $mod+m exec wl-find-cursor
 
 set $mode_screensaver ScreenSaver Mode (e) enable, (d) disable
 mode "$mode_screensaver" {
-    bindsym e exec --no-startup-id "pgrep xscreensaver || xscreensaver -nosplash &", mode "default"
-    bindsym d exec --no-startup-id "pkill xscreensaver", mode "default"
+    bindsym e exec pgrep swayidle || swayidle -w timeout 480 'gtklock -d' timeout 960 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' before-sleep 'gtklock -d' &, mode "default"
+    bindsym d exec killall swayidle, mode "default"
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
 bindsym $mod+Shift+b mode "$mode_screensaver"
+bindsym $mod+Shift+t exec swaymsg "output * dpms on", mode "default"
 
 # start dmenu (a program launcher)
 # bindsym $mod+d exec dmenu_run
 # ROFI launcher
 bindsym $mod+d exec --no-startup-id "rofi -combi-modi drun#run#ssh#window -show combi"
 bindsym $mod+a exec --no-startup-id "rofi -show window"
-bindsym $mod+v exec --no-startup-id rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
+bindsym $mod+v exec --no-startup-id rofi -modi clipboard:cliphist-rofi-img -show clipboard -show-icons
 bindsym $mod+o exec --no-startup-id project-screen $MAIN_DISPLAY $SIDE_DISPLAY
 bindsym $mod+Shift+o exec --no-startup-id project-screen
 # There also is the (new) i3 only displays applications

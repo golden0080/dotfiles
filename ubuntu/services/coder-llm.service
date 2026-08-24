@@ -1,0 +1,24 @@
+[Unit]
+Description=Qwen3-Coder-Next LLM Server
+After=network.target
+
+[Service]
+Type=simple
+User=hazel-nut
+Environment=HOME=/home/hazel-nut
+WorkingDirectory=%h/ggufs
+Environment=GGML_OP_OFFLOAD_MIN_BATCH=2048
+ExecStart=/usr/bin/bash -c "llama-server -m unsloth-Qwen3-Coder-Next-UD-IQ3_S.gguf -a Qwen3-Coder-Next-GGUF -fa on -c 256000 -np 4 -cb -b 4096 -ub 2048 --host 0.0.0.0 --port 8081 -ngl 41 --n-cpu-moe 1 --no-mmap --cache-ram 2048 --jinja --threads-http 1 -kvu"
+Restart=always
+RestartSec=5
+
+# Resource limits
+LimitNOFILE=65535
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=coder-llm
+
+[Install]
+WantedBy=multi-user.target

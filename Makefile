@@ -1,3 +1,12 @@
+.PHONY: install help
+
+# Basic setup: Ubuntu tools + shell dotfiles
+install:
+	$(MAKE) -C ubuntu install
+
+help:
+	@grep -hE '^[a-z][a-z0-9-]*:' $(MAKEFILE_LIST) | cut -d: -f1 | sort -u | sed 's/^/  /'
+
 install-screensavers:
 	sudo apt install xscreensaver xscreensaver-data-extra xscreensaver-gl-extra
 
@@ -13,12 +22,25 @@ install-fzf:
 	git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 	~/.fzf/install
 
+# PATH for ~/.opencode/bin is managed by ubuntu/.bashrc, hence --no-modify-path
+install-opencode:
+	curl -fsSL https://opencode.ai/install | bash -s -- --no-modify-path
+	$(MAKE) -C opencode install-config
+
 install-waka:
 	sudo pip install wakatime
 
 install-fd:
 	wget -O /tmp/fd-install.deb https://github.com/sharkdp/fd/releases/download/v8.1.1/fd_8.1.1_amd64.deb
 	sudo dpkg -i /tmp/fd-install.deb
+
+FLAMESHOT_VERSION=14.0.0
+FLAMESHOT_ARTIFACT=flameshot-v14.0+git0.da6121bd-artifact-ubuntu-24.04-amd64.zip
+
+install-flameshot:
+	wget -O /tmp/flameshot.zip "https://github.com/flameshot-org/flameshot/releases/download/v$(FLAMESHOT_VERSION)/$(FLAMESHOT_ARTIFACT)"
+	unzip -o /tmp/flameshot.zip -d /tmp/flameshot
+	sudo apt install /tmp/flameshot/*.deb xdg-desktop-portal-wlr
 
 install-gitconfig:
 	ln -s ${CURDIR}/dot.gitconfig ${HOME}/.gitconfig
@@ -32,8 +54,11 @@ install-markdown:
 install-audioctl:
 	sudo apt-get install pavucontrol
 
-install-fcitx:
+install-fcitx4:
 	sudo apt install fcitx fcitx-googlepinyin
+
+install-fcitx5:
+	sudo apt install fcitx5 fcitx5-googlepinyin
 
 install-default-sudo:
 	cat sudoers/10-default-sudo | sed "s;{{USER}};${USER};g" | sudo tee /etc/sudoers.d/10-default-sudo

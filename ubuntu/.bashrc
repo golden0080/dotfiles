@@ -141,6 +141,17 @@ if ! shopt -oq posix; then
   fi
 fi
 
+export HF_ENABLED=1
+export CLAUDE_LOCAL=1
+
+# Source ~/.profile if it exists and hasn't been loaded
+if [ -f ~/.profile ]; then
+    . ~/.profile
+fi
+
+# opencode (before extensions so they can detect it)
+export PATH=/home/gh/.opencode/bin:$PATH
+
 # ------- Other extensions --------
 for DOTFILE in `find ~/dotfiles/bash_extensions`
 do

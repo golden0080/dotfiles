@@ -5,8 +5,19 @@ YELLOW='\[\033[36m\]'
 
 # -------Paths-------
 function pro() {
-    cd ~/projects/$1
+    if [ -z "$1" ]; then
+        cd ~/projects
+    else
+        cd ~/projects/$1
+    fi
 }
+
+function _pro_completions() {
+    local cur
+    cur="${COMP_WORDS[COMP_CWORD]}"
+    COMPREPLY=( $(compgen -W "$(ls -d ~/projects/*/ 2>/dev/null | xargs -n1 basename)" -- "$cur") )
+}
+complete -F _pro_completions pro
 
 # -------utils-------
 alias cdu="cd .."
@@ -19,7 +30,3 @@ function tsize() {
 }
 
 alias clean="greenclip clear"
-
-export GTK_IM_MODULE=fcitx
-export QT_IM_MODULE=fcitx
-export XMODIFIERS="@im=fcitx"
