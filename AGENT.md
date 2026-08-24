@@ -53,6 +53,13 @@ Do not introduce new hardcoded paths; if a config needs a file from the repo, re
 - Dry-run before running anything: `make -n <target>` (top-level) or `make -C <dir> -n <target>`.
 - Do not run targets that invoke `sudo` (apt, systemctl, writes to `/etc`) without explicit user approval.
 
+## Design notes
+
+- Input method (fcitx5) env vars (`GTK_IM_MODULE`, `QT_IM_MODULE`, `XMODIFIERS`, `SDL_IM_MODULE`) are exported in `ubuntu/.profile` — the single source of truth. GDM starts sway via `bash -l -c sway`, which sources `~/.bash_profile` -> `~/.profile`, so sway and every app it launches (incl. via rofi) inherit them; interactive shells get them too (`~/.bashrc` sources `~/.profile`).
+  - Sway has **no** `env` config command (i3-only; removed in sway) — do not add `env` lines to `sway/config`; they fail with `Unknown/invalid command 'env'`.
+  - `sway/config` starts fcitx5 with `pgrep -x fcitx5 || fcitx5 &` — never `pkill fcitx5 || fcitx5 &`, which kills a running fcitx5 on every reload without restarting it.
+  - `make check-fcitx` guards both of the above against regression.
+
 ## Known quirks
 
 - Top-level `install-fcitx4` installs fcitx v4, but `sway/config` launches `fcitx5` (covered by `sway/install-deps` or top-level `install-fcitx5`).

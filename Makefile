@@ -60,6 +60,18 @@ install-fcitx4:
 install-fcitx5:
 	sudo apt install fcitx5 fcitx5-googlepinyin
 
+# Regression guard for the fcitx fix: the IM env vars must be exported in
+# ubuntu/.profile (sourced at login, so sway and all apps inherit them) and
+# fcitx5 must be started with pgrep, not pkill (pkill kills a running fcitx5
+# on every sway reload without restarting it).
+check-fcitx:
+	@grep -q 'export GTK_IM_MODULE="fcitx"' ${CURDIR}/ubuntu/.profile
+	@grep -q 'export QT_IM_MODULE="fcitx"' ${CURDIR}/ubuntu/.profile
+	@grep -q 'export XMODIFIERS="@im=fcitx"' ${CURDIR}/ubuntu/.profile
+	@grep -q 'export SDL_IM_MODULE="fcitx"' ${CURDIR}/ubuntu/.profile
+	@! grep -q 'pkill fcitx5' ${CURDIR}/sway/config
+	@echo "fcitx env OK"
+
 install-default-sudo:
 	cat sudoers/10-default-sudo | sed "s;{{USER}};${USER};g" | sudo tee /etc/sudoers.d/10-default-sudo
 

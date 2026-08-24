@@ -14,6 +14,11 @@ set $SIDE_DISPLAY "BNQ BenQ RL2455 42E04173SL0"
 set $MAIN_AUDIO alsa_output.usb-Macronix_Razer_Barracuda_X_2.4_1234-00.analog-stereo
 # --------------------------
 
+# Input method (fcitx5): sway has no `env` command, so the IM variables are
+# exported in ubuntu/.profile instead — GDM starts sway via `bash -l -c sway`,
+# which sources ~/.bash_profile -> ~/.profile, so sway and every app it
+# launches inherit them.
+
 # Startup Processes
 # ----------------- Sway Config -----------------
 output $MAIN_DISPLAY {
@@ -26,7 +31,7 @@ output $SIDE_DISPLAY {
   pos 3072 800
 }
 
-exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP XMODIFIERS QT_IM_MODULES
+exec_always --no-startup-id "systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP GTK_IM_MODULE QT_IM_MODULE XMODIFIERS"
 exec hash dbus-update-activation-environment 2>/dev/null && \
      dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
 exec dbus-update-activation-environment --all
@@ -36,7 +41,7 @@ exec_always --no-startup-id "pactl set-sink-volume $MAIN_AUDIO 33%"
 exec_always --no-startup-id "nm-applet"
 exec_always --no-startup-id "xmodmap ~/dotfiles/dot.Xmodmap &"
 
-exec_always --no-startup-id "pkill fcitx5 || fcitx5 &"
+exec_always --no-startup-id "pgrep -x fcitx5 || fcitx5 &"
 exec_always --no-startup-id "wl-paste --watch cliphist store"
 exec_always --no-startup-id "pgrep swaync || swaync"
 exec_always --no-startup-id "pgrep -x flameshot || flameshot"

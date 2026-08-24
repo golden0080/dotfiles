@@ -51,6 +51,7 @@ make install-gitconfig
 | `install-audioctl` | `apt install pavucontrol` |
 | `install-fcitx4` | `apt install fcitx fcitx-googlepinyin` |
 | `install-fcitx5` | `apt install fcitx5 fcitx5-googlepinyin` |
+| `check-fcitx` | Verify the fcitx env exports in `ubuntu/.profile` and the `pgrep`-based fcitx5 start line in `sway/config` |
 | `install-screensavers` | `apt install xscreensaver` (+ data/gl extras) |
 | `install-rofi` | Add rofi PPA and install rofi |
 | `install-golang` | Download and extract a pinned Go tarball to `~/go-install/` |
@@ -86,3 +87,8 @@ make -C ubuntu/services install
 - `dot.Xmodmap` — loaded directly from the repo by `.xinitrc`
 - `ssh/config` — copy to `~/.ssh/config` manually (contains host-specific settings)
 - `macosx/` — not yet wired into any Makefile
+
+## Notes
+
+- sway 1.12 was built from source locally (not installed via apt)
+- libinput was built from source locally (not installed via apt)
