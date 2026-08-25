@@ -10,8 +10,8 @@ all: install
 
 install:
 	@echo "Installing $(SERVICE_FILE) to systemd..."
-	@cp $(SERVICE_FILE) $(SYSTEMD_DIR)/$(SERVICE_FILE)
-	@chmod 664 $(SYSTEMD_DIR)/$(SERVICE_FILE)
+	@sudo cp $(SERVICE_FILE) $(SYSTEMD_DIR)/$(SERVICE_FILE)
+	@sudo chmod 664 $(SYSTEMD_DIR)/$(SERVICE_FILE)
 	@echo "Service installed successfully."
 	@echo "Note: You may need to update User and WorkingDirectory in $(SERVICE_FILE)"
 	@echo "      to match your actual username and home directory."

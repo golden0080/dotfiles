@@ -7,3 +7,4 @@ CONFIG_DIR = $(HOME)/.config/opencode
 install-config:
 	mkdir -p $(CONFIG_DIR)
 	ln -sf ${CURDIR}/opencode.jsonc $(CONFIG_DIR)/opencode.jsonc
+	ln -sf ${CURDIR}/opencode-notifier.json $(CONFIG_DIR)/opencode-notifier.json

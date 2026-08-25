@@ -43,10 +43,10 @@ install-flameshot:
 	sudo apt install /tmp/flameshot/*.deb xdg-desktop-portal-wlr
 
 install-gitconfig:
-	ln -s ${CURDIR}/dot.gitconfig ${HOME}/.gitconfig
+	ln -sf ${CURDIR}/dot.gitconfig ${HOME}/.gitconfig
 
 install-bazelrc:
-	ln -s ${CURDIR}/dot.bazelrc ${HOME}/.bazelrc
+	ln -sf ${CURDIR}/dot.bazelrc ${HOME}/.bazelrc
 
 install-markdown:
 	sudo apt install markdown
@@ -76,7 +76,7 @@ install-default-sudo:
 	cat sudoers/10-default-sudo | sed "s;{{USER}};${USER};g" | sudo tee /etc/sudoers.d/10-default-sudo
 
 install-spacemacs:
-	git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
+	[ -d ~/.emacs.d ] || git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
 	ln -sf ${CURDIR}/dot.spacemacs ~/.spacemacs
 	ln -sf ${CURDIR}/python/pycodestyle.autopep8 ~/.config/pycodestyle
 
