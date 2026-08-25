@@ -3,6 +3,11 @@
 Notes for the from-source sway stack installed to `/usr/local` on this machine
 (built 2026-08-24). Toolchain: gcc 13.3, meson (in `~/.local/bin`), ninja 1.11.1, ccache.
 
+## Links
+
+- sway: <https://github.com/swaywm/sway> — releases (artifacts): <https://github.com/swaywm/sway/releases>
+- wlroots: <https://gitlab.freedesktop.org/wlroots/wlroots> — releases (artifacts): <https://gitlab.freedesktop.org/wlroots/wlroots/-/releases>
+
 ## Pinned versions
 
 | Component | Version | Source |
@@ -24,6 +29,9 @@ Notes for the from-source sway stack installed to `/usr/local` on this machine
 - `v4l-utils` wrap exists but is unused (v4l2 support: NO).
 - The build was configured with `wrap-mode=nodownload`, so all subproject sources must
   already be present; meson will not fetch anything.
+- `libinput` was **not** part of the sway/wlroots meson stack: it was built manually
+  (separate source tree at `/tmp/opencode/libinput`, build dir `build/`) and installed
+  to /usr/local on its own.
 
 ## apt dependencies
 

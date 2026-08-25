@@ -4,6 +4,10 @@ This documents how this box builds and installs **gtklock v4.0.0** from source,
 because the packaged version in the distro repo is too old to work with a
 modern Sway.
 
+## Links
+
+- gtklock: <https://github.com/jovanlanik/gtklock> — releases (artifacts): <https://github.com/jovanlanik/gtklock/releases>
+
 ## Why we build from source
 
 - The distro repo (Ubuntu Noble) only ships **gtklock 2.1.0**, which locks the

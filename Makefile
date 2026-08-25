@@ -7,14 +7,6 @@ install:
 help:
 	@grep -hE '^[a-z][a-z0-9-]*:' $(MAKEFILE_LIST) | cut -d: -f1 | sort -u | sed 's/^/  /'
 
-install-screensavers:
-	sudo apt install xscreensaver xscreensaver-data-extra xscreensaver-gl-extra
-
-install-rofi:
-	sudo add-apt-repository ppa:jasonpleau/rofi
-	sudo apt update
-	sudo apt install rofi
-
 install-ag:
 	sudo apt-get install silversearcher-ag
 
@@ -64,7 +56,7 @@ install-fcitx5:
 # ubuntu/.profile (sourced at login, so sway and all apps inherit them) and
 # fcitx5 must be started with pgrep, not pkill (pkill kills a running fcitx5
 # on every sway reload without restarting it).
-check-fcitx:
+check-fcitx5:
 	@grep -q 'export GTK_IM_MODULE="fcitx"' ${CURDIR}/ubuntu/.profile
 	@grep -q 'export QT_IM_MODULE="fcitx"' ${CURDIR}/ubuntu/.profile
 	@grep -q 'export XMODIFIERS="@im=fcitx"' ${CURDIR}/ubuntu/.profile

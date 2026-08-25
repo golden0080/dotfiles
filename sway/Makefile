@@ -10,5 +10,15 @@ install-deps:
 	sudo apt install -y swaync wl-clipboard fcitx5
 	@echo "sway:      build from source (installs to /usr/local)"
 	@echo "gtklock:   build from source (see builds/gtklock.md)"
-	@echo "cliphist:  copy the prebuilt binary from GitHub releases into ~/.local/bin"
+	@echo "cliphist:  make -C sway install-cliphist (prebuilt binary from GitHub releases into ~/.local/bin)"
 	@echo "alacritty: build from source (installs to ~/.local/bin)"
+
+CLIPHIST_VERSION=0.6.1
+
+# Prebuilt static binary + the contrib rofi helper script, both pinned to the
+# same release tag; installed to ~/.local/bin (user-local, no sudo).
+install-cliphist:
+	mkdir -p ${HOME}/.local/bin
+	curl -fsSL -o ${HOME}/.local/bin/cliphist https://github.com/sentriz/cliphist/releases/download/v${CLIPHIST_VERSION}/v${CLIPHIST_VERSION}-linux-amd64
+	curl -fsSL -o ${HOME}/.local/bin/cliphist-rofi-img https://raw.githubusercontent.com/sentriz/cliphist/v${CLIPHIST_VERSION}/contrib/cliphist-rofi-img
+	chmod 755 ${HOME}/.local/bin/cliphist ${HOME}/.local/bin/cliphist-rofi-img

@@ -66,7 +66,7 @@ Components in subdirectories have their own Makefiles. Run them with `make -C <d
 | `ubuntu/` | `install`, `install-basic-tools`, `install-bash-rc` | Basic shell setup |
 | `ubuntu/services/` | `install`, `uninstall`, `reload-restart`, `status`, `help` | Installs `coder-llm.service` into systemd |
 | `i3/` | `install-config`, `install-py3status`, `install-project-screen`, `install-i3-rofi-mark` | i3 + dunst + py3status configs |
-| `sway/` | `install-config`, `install-deps` | sway config + sway-specific packages (shared tools come from `i3/` and top-level targets) |
+| `sway/` | `install-config`, `install-deps`, `install-cliphist` | sway config + sway-specific packages (shared tools come from `i3/` and top-level targets); `install-cliphist` fetches the prebuilt cliphist binary + `cliphist-rofi-img` script into `~/.local/bin` |
 | `rofi/` | `install` | rofi + greenclip configs |
 | `alacritty/` | `config` | Symlink `~/.config/alacritty/alacritty.toml` |
 | `terminator/` | `install-config` | Symlink terminator config |
@@ -80,6 +80,27 @@ Example:
 make -C i3 install-config
 make -C ubuntu/services install
 ```
+
+## Artifacts downloaded from GitHub
+
+Some targets install prebuilt artifacts downloaded from GitHub releases instead
+of building from source:
+
+| Target | Artifact | Pinned version | Release |
+|---|---|---|---|
+| `install-fd` | `fd_8.1.1_amd64.deb` | 8.1.1 | [sharkdp/fd v8.1.1](https://github.com/sharkdp/fd/releases/tag/v8.1.1) |
+| `install-flameshot` | `flameshot-v14.0+git0.da6121bd-artifact-ubuntu-24.04-amd64.zip` | 14.0.0 | [flameshot-org/flameshot v14.0.0](https://github.com/flameshot-org/flameshot/releases/tag/v14.0.0) |
+| `make -C rofi install` | `greenclip` binary | 3.3 | [erebe/greenclip 3.3](https://github.com/erebe/greenclip/releases/tag/3.3) |
+| `make -C sway install-cliphist` | `v0.6.1-linux-amd64` static binary + `contrib/cliphist-rofi-img` script | 0.6.1 | [sentriz/cliphist v0.6.1](https://github.com/sentriz/cliphist/releases/tag/v0.6.1) |
+
+Details:
+
+- **cliphist** — not an apt package; `install-cliphist` copies the static
+  release binary to `~/.local/bin/cliphist` and the `cliphist-rofi-img` helper
+  script (from the release tag's `contrib/`) to `~/.local/bin/cliphist-rofi-img`
+  (no sudo). Used by `sway/config`: `wl-paste --watch cliphist store` records
+  the clipboard, `$mod+v` opens it via rofi
+  (`rofi -modi clipboard:cliphist-rofi-img`).
 
 ## No install needed
 

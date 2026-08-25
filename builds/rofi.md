@@ -3,6 +3,11 @@
 This documents how this box builds and installs **rofi** from source, because the
 distro package predates rofi's official Wayland support.
 
+## Links
+
+- Repository: <https://github.com/DaveDavenport/rofi>
+- Releases (artifacts): <https://github.com/DaveDavenport/rofi/releases>
+
 ## Why we build from source
 
 **rofi 2.0.0** is the first release with an officially supported Wayland backend

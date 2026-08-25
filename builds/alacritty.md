@@ -3,6 +3,11 @@
 This documents how this box builds and installs **alacritty** from source,
 because the distro package is older than what we run.
 
+## Links
+
+- Repository: <https://github.com/alacritty/alacritty>
+- Releases (artifacts): <https://github.com/alacritty/alacritty/releases>
+
 ## Why we build from source
 
 The apt package lags upstream. Building from source lets us run the latest
