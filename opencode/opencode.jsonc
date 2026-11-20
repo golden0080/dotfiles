@@ -1,28 +1,68 @@
 {
-    "$schema": "https://opencode.ai/config.json",
-    "plugin": [
-        "@mohak34/opencode-notifier@latest"
-    ],
-    "provider": {
-        "hazel-local": {
-            "npm": "@ai-sdk/openai-compatible",
-            "name": "Hazel Local LLM",
-            "options": {
-                "baseURL": "http://192.168.1.188:8081/v1"
-            },
-            "models": {
-                "qwen3.6-35B": {
-                    "name": "Qwen Series Models",
-                    "limit": {
-                        "context": 266140,
-                        "output": 102400
-                    }
-                }
-            }
+  "$schema": "https://opencode.ai/config.json",
+  "plugin": [
+    "@mohak34/opencode-notifier@latest"
+  ],
+  "provider": {
+    "hazel-local": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Hazel Local LLM",
+      "options": {
+        "baseURL": "http://192.168.1.188:8081/v1"
+      },
+      "models": {
+        "Qwen3.8": {
+          "name": "Qwen Series Models",
+          "limit": {
+            "context": 266140,
+            "output": 102400
+          },
+          "attachment": true,
+          "modalities": {
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
+          }
         }
-    },
-    "permission": {
-        "question": "allow",
-        "websearch": "allow"
+      }
     }
+  },
+  "permission": {
+    "question": "allow",
+    "websearch": "allow"
+  },
+  "mcp": {
+    "semble": {"command": ["uvx", "--from", "semble[mcp]==0.7.3", "semble"], "type": "local", "enabled": true},
+    "chrome-mcp-server": {
+      "type": "remote",
+      "url": "http://127.0.0.1:12306/mcp",
+      "headers": {
+        "Origin": "http://127.0.0.1"
+      }
+    },
+    "Local Photoshop": {
+      "type": "local",
+      "command": [
+        "photocraft-cli",
+        "mcp",
+        "--automation-read-root",
+        "/home/gh/Documents/test1",
+        "--automation-write-root",
+        "/home/gh/Documents/test1"
+      ]
+    },
+    "Live PowerPoint Session": {
+      "type": "local",
+      "command": [
+        "deckcraft-cli",
+        "mcp",
+        "--connect",
+        "8888"
+      ]
+    }
+  }
 }

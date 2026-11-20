@@ -3,3 +3,8 @@
 key = "Return"
 mods = "Shift"
 chars = "\u001B\r"
+
+[[keyboard.bindings]]
+key = "Return"
+mods = "Alt|Shift"
+action = "SpawnNewInstance"

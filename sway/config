@@ -45,7 +45,8 @@ exec_always --no-startup-id "pgrep -x fcitx5 || fcitx5 &"
 exec_always --no-startup-id "wl-paste --watch cliphist store"
 exec_always --no-startup-id "pgrep swaync || swaync"
 exec_always --no-startup-id "pgrep -x flameshot || flameshot"
-exec_always --no-startup-id pgrep swayidle || swayidle -w timeout 480 'gtklock -d' timeout 960 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' before-sleep 'gtklock -d' &
+exec_always --no-startup-id "veila status >/dev/null 2>&1 || veila daemon &"
+exec_always --no-startup-id pgrep swayidle || swayidle -w timeout 480 'veila lock' timeout 960 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' before-sleep 'veila lock --wait-ready' &
 # -----------------
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -78,9 +79,6 @@ bindsym $mod+Return exec alacritty
 # kill focused window
 bindsym $mod+Shift+q kill
 
-# lock screen
-bindsym $mod+Shift+s exec --no-startup-id "xscreensaver-command -lock"
-
 # screenshot
 bindsym $mod+Shift+backslash exec --no-startup-id flameshot gui
 
@@ -91,9 +89,9 @@ bindsym $mod+Shift+g exec "i3-rofi-mark unmark"
 
 set $mode_system System (l) lock, (e) logout, (s) suspend, (r) reboot, (p) shutdown
 mode "$mode_system" {
-    bindsym l exec gtklock -d, mode "default"
+    bindsym l exec veila lock, mode "default"
     bindsym e exec swaymsg exit, mode "default"
-    bindsym s exec gtklock -d && systemctl suspend, mode "default"
+    bindsym s exec veila lock --wait-ready && systemctl suspend, mode "default"
     # bindsym h exec swaylock -f -c 000000 && systemctl hibernate, mode "default"
     bindsym r exec systemctl reboot, mode "default"
     bindsym p exec systemctl poweroff, mode "default"
@@ -107,7 +105,7 @@ bindsym $mod+m exec wl-find-cursor
 
 set $mode_screensaver ScreenSaver Mode (e) enable, (d) disable
 mode "$mode_screensaver" {
-    bindsym e exec pgrep swayidle || swayidle -w timeout 480 'gtklock -d' timeout 960 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' before-sleep 'gtklock -d' &, mode "default"
+    bindsym e exec pgrep swayidle || swayidle -w timeout 480 'veila lock' timeout 960 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' before-sleep 'veila lock --wait-ready' &, mode "default"
     bindsym d exec killall swayidle, mode "default"
 
     # back to normal: Enter or Escape
@@ -225,10 +223,10 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym l resize shrink height 10 px or 10 ppt
-        bindsym semicolon resize grow width 10 px or 10 ppt
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
 
         # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
@@ -262,3 +260,7 @@ workspace 7 output $MAIN_DISPLAY
 workspace 8 output $SIDE_DISPLAY
 workspace 9 output $SIDE_DISPLAY
 workspace 10 output $SIDE_DISPLAY
+
+# Better experience with fullscreen apps
+for_window [app_id="^.*"] inhibit_idle fullscreen
+for_window [class="^.*"] inhibit_idle fullscreen

@@ -31,7 +31,8 @@ values."
    dotspacemacs-configuration-layer-path '()
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(systemd
+   '(toml
+     systemd
      javascript
      ;; rust
      ;; ruby
@@ -734,14 +735,14 @@ This function is called at the very end of Spacemacs initialization."
                  highlight-indentation highlight-numbers highlight-parentheses
                  hl-todo htmlize hungry-delete hy-mode hydra ibuffer-projectile
                  ido-vertical-mode iedit indent-guide inf-ruby info+ inkpot-theme
-                 ir-black-theme jazz-theme jbeans-theme journalctl-mode js-doc
-                 js2-mode js2-refactor json-mode json-reformat json-snatcher
-                 less-css-mode let-alist light-soap-theme link-hint linum-relative
-                 live-py-mode livid-mode log4e lorem-ipsum lush-theme macrostep
-                 madhat2r-theme magit magit-gitflow magit-popup majapahit-theme
-                 markdown-mode markdown-toc material-theme minimal-theme minitest
-                 mmm-mode moe-theme molokai-theme monochrome-theme monokai-theme
-                 move-text multi multi-term multiple-cursors mustang-theme mwim
+                 ir-black-theme jazz-theme jbeans-theme js-doc js2-mode
+                 js2-refactor json-mode json-reformat json-snatcher less-css-mode
+                 let-alist light-soap-theme link-hint linum-relative live-py-mode
+                 livid-mode log4e lorem-ipsum lush-theme macrostep madhat2r-theme
+                 magit magit-gitflow magit-popup majapahit-theme markdown-mode
+                 markdown-toc material-theme minimal-theme minitest mmm-mode
+                 moe-theme molokai-theme monochrome-theme monokai-theme move-text
+                 multi multi-term multiple-cursors mustang-theme mwim
                  naquadah-theme neotree nginx-mode niflheim-theme noctilux-theme
                  obsidian-theme occidental-theme oldlace-theme
                  omtose-phellack-theme open-junk-file org-bullets
@@ -761,9 +762,9 @@ This function is called at the very end of Spacemacs initialization."
                  soft-morning-theme soft-stone-theme solarized-theme soothe-theme
                  spacegray-theme spaceline spacemacs-theme spinner spotify
                  sql-indent subatomic-theme subatomic256-theme sublime-themes
-                 sunny-day-theme systemd tagedit tango-2-theme tango-plus-theme
-                 tangotango-theme tao-theme tern tide toc-org toxi-theme transient
-                 treepy tronesque-theme twilight-anti-bright-theme
+                 sunny-day-theme tagedit tango-2-theme tango-plus-theme
+                 tangotango-theme tao-theme tern tide toc-org toml-mode toxi-theme
+                 transient treepy tronesque-theme twilight-anti-bright-theme
                  twilight-bright-theme twilight-theme typescript-mode ujelly-theme
                  underwater-theme undo-tree unfill use-package uuidgen
                  vi-tilde-fringe volatile-highlights wakatime-mode web-beautify

@@ -19,6 +19,11 @@ install-opencode:
 	curl -fsSL https://opencode.ai/install | bash -s -- --no-modify-path
 	$(MAKE) -C opencode install-config
 
+# Symlink the repo's skills/ into the global skills dir so skills are managed here
+install-skills:
+	mkdir -p ${HOME}/.agents
+	ln -sfn ${CURDIR}/skills ${HOME}/.agents/skills
+
 install-waka:
 	sudo pip install wakatime
 
